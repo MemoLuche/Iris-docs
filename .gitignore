@@ -1,0 +1,7 @@
+# Obsidian (configuración/caché local)
+.obsidian/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
