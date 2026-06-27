@@ -6,6 +6,35 @@ tags: [iris, arquitectura, backend, nestjs]
 
 [[00 - Índice|← Índice]] · [[02 - Arquitectura|← Arquitectura general]]
 
+## Stack y tooling
+
+| Área | Elección | Notas |
+|---|---|---|
+| Runtime / lenguaje | **Node 22 LTS · TypeScript 5** | Fijar Node con `.nvmrc` + `engines` (equipo tiene 24 → nvm) |
+| Gestor de paquetes | **pnpm** | `pnpm-lock.yaml` versionado |
+| Framework | **NestJS 11** | Monolito modular, DI |
+| ORM / BD | **Prisma 6 · PostgreSQL 16 · pgvector 0.8** | Ver §Capa de datos |
+| Cache / colas | **Redis 7 · BullMQ 5** | Webhooks async, jobs SLA |
+| Auth | **`@nestjs/jwt` + Passport (`JwtStrategy`) · bcrypt/argon2** | Access + refresh, guards por rol |
+| Docs / contrato API | **`@nestjs/swagger` (OpenAPI)** | Genera tipos/cliente del front (cierra A-11) |
+| Cliente HTTP externo | **`axios` (`@nestjs/axios`)** | Llamadas a APIs externas con reintentos |
+| SDKs externos | **`openai` · `@slack/web-api`** · Pipedrive y WhatsApp Cloud API por **HTTP directo** | Pipedrive/WhatsApp sin SDK oficial sólido |
+| Validación payload | **`class-validator` + `class-transformer`** (`ValidationPipe`) | DTOs |
+| Validación de env | **Zod** en `@nestjs/config` | Falla al arrancar si falta config |
+| Seguridad HTTP | **`@nestjs/throttler` (rate limit) · `helmet` · CORS** | Protege API y webhook |
+| Health checks | **`@nestjs/terminus`** (`/health`) | Liveness/readiness |
+| Tareas programadas | **`@nestjs/schedule`** (cron: digest) + **BullMQ** (jobs con delay: SLA) | |
+| Tiempo real | **Socket.io 4** (`@nestjs/websockets`) | Inbox en vivo |
+| Logging | **pino** (`nestjs-pino`) | Logs estructurados |
+| Testing | **Jest + Supertest** | Unit + e2e |
+| Calidad | **ESLint + Prettier** | |
+| Contenedores | **Docker** (Dockerfile multi-stage) + **docker-compose** | Dev: Postgres+Redis · Prod: stack completo en EC2 (ver [[07 - Infraestructura]]) |
+
+### Entornos con Docker
+
+- **Desarrollo:** `docker-compose.dev.yml` levanta **solo Postgres + Redis**; la API corre fuera del contenedor con hot-reload (`pnpm start:dev`) apuntando a esos servicios.
+- **Producción (MVP):** `docker-compose` en el EC2 corre **API (imagen de ECR) + Postgres + Redis**, con **volúmenes** para persistencia + backups. A escala: Postgres→RDS, Redis→ElastiCache (ver [[07 - Infraestructura]]).
+
 ## Arquitectura en capas
 
 Cada módulo NestJS respeta tres capas + transversales. Las dependencias apuntan **hacia adentro** (la presentación depende de la aplicación; la aplicación depende de abstracciones de infraestructura, no de detalles).

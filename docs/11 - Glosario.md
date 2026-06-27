@@ -8,7 +8,7 @@ tags: [iris, glosario]
 
 | Término | Definición |
 |---|---|
-| **Iris** | Nombre clave del proyecto: herramienta de WhatsApp + IA + automatizaciones para CrossHome. No es un CRM. |
+| **Iris** | Nombre clave del proyecto: herramienta de WhatsApp + IA + automatizaciones para CrossHome. No es un CRM. El nombre viene de **Iris, la mensajera de los dioses** en la mitología griega. |
 | **CrossHome** | Inmobiliaria cliente: compra/venta de inmuebles (residencial, comercial, terrenos, desarrollos). 10 asesores + 2 administrativos. |
 | **Clave del inmueble** | Código `[2 letras asesor][2-3 letras tipo+negocio][identificador]`, ej. `HRCVCENTRO01`. Fuente de la asignación. Ver [[Flujos/03 - Asignación (resolverAsesorDestino)]]. |
 | **`resolverAsesorDestino`** | Algoritmo que decide el asesor de un lead: regla de reasignación → ausencia/cubridor → directa → fallback. |

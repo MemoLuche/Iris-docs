@@ -92,8 +92,9 @@ Detalle de cada módulo, sus capas y dependencias en [[13 - Arquitectura de Soft
 
 | Capa | Tecnología | Versión aprox. | Justificación |
 |---|---|---|---|
-| Runtime | Node.js | 22 LTS | Soporte y rendimiento |
+| Runtime | Node.js | **22 LTS** | Fijar con `.nvmrc` + `engines` (el equipo tiene 24 instalado → usar nvm) |
 | Lenguaje | TypeScript | 5.x | Tipado en back y front |
+| Gestor de paquetes | **pnpm** | — | Rápido, eficiente en disco (back y front) |
 | Backend | NestJS | 11 | Estructura modular, DI, decoradores |
 | ORM | Prisma | 6 | Type-safety, migraciones; pgvector vía raw |
 | Base de datos | PostgreSQL + pgvector | 16 / 0.8 | Relacional + RAG en la misma BD |
@@ -101,11 +102,17 @@ Detalle de cada módulo, sus capas y dependencias en [[13 - Arquitectura de Soft
 | Auth | JWT (`@nestjs/jwt`, Passport) | — | Access + refresh, guards por rol |
 | IA | OpenAI SDK | — | Texto, visión, tool calling |
 | Tiempo real | Socket.io | 4 | Inbox en vivo, presencia |
+| Docs API | `@nestjs/swagger` (OpenAPI) | — | Documenta la API y genera tipos del front |
+| Testing | Jest + Supertest (back) · Vitest (front) | — | Unit + e2e |
+| Calidad | ESLint + Prettier | — | Lint y formato |
+| Contenedores | Docker + docker-compose | — | Dev (Postgres+Redis) · prod (stack completo en EC2) |
 | Frontend | React + Vite | 19 / 6 | SPA privada, build estático |
 | UI | Tailwind + shadcn/ui | 4 / — | Desarrollo rápido y consistente |
 | Estado servidor | TanStack Query | 5 | Cache y sync con la API |
 | Estado UI | Zustand (ligero) | — | Auth/socket/estado global mínimo |
 | Infra | AWS EC2 + Docker Compose, ECR, S3+CloudFront | — | Costo mínimo a este volumen |
+
+> Tooling completo del backend (seguridad, health, cron, validación de env, SDKs) en [[13 - Arquitectura de Software (Backend)]] §Stack y tooling.
 
 ## Calidad y transversales
 

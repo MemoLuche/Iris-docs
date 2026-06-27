@@ -42,6 +42,12 @@ Bitácora de decisiones del proyecto (estilo ADR ligero).
 | D-28 | **Personas separadas: `tUsuario` (login) y `tAsesor` (ventas)** | Asesores no usan panel; modelos con responsabilidades distintas | 2026-06-24 |
 | D-29 | **`tLog` unificado** (reemplaza `tAsignacion` y `tIntegracionLog`) | Un solo log de todo el sistema con enums `categoria`/`motivo`/`nivel`; el historial de asignaciones se consulta por `categoria=ASIGNACION` | 2026-06-24 |
 | D-30 | **Kanban = cambio de estado del chat; notificaciones solo toasts** | UX simple: columnas = estados de la conversación; sin centro de notificaciones | 2026-06-24 |
+| D-31 | **Gestor de paquetes: pnpm** (back y front) | Rápido, eficiente en disco, estricto | 2026-06-24 |
+| D-32 | **Node 22 LTS** (fijar con `.nvmrc` + `engines`) | Conservador/probado; el equipo tiene 24 → usar nvm | 2026-06-24 |
+| D-33 | **Contrato API: `@nestjs/swagger` (OpenAPI)** → genera tipos del front | Documenta la API y evita divergencia de tipos (cierra A-11) | 2026-06-24 |
+| D-34 | **Testing: Jest + Supertest** (back); Vitest (front) | Default de Nest, cero fricción | 2026-06-24 |
+| D-35 | **Docker en dev y prod** | Dev: Postgres+Redis en compose, API con hot-reload. Prod: stack completo en EC2 | 2026-06-24 |
+| D-36 | **Baseline de tooling backend** | `@nestjs/throttler`, `helmet`, CORS, `@nestjs/terminus`, `@nestjs/schedule`, validación de env (Zod), axios, pino, ESLint+Prettier | 2026-06-24 |
 
 ## ⏳ Decisiones abiertas (pendientes de CrossHome)
 
@@ -57,8 +63,8 @@ Bitácora de decisiones del proyecto (estilo ADR ligero).
 | A-08 | **Estimación de horas** de desarrollo por fase | Cotización |
 | A-09 | **Nombre comercial** definitivo | Branding |
 | A-10 | Mapeo de **links de portales** (Inmuebles24/ML/Lamudi) → clave interna | Intake (Flujo 02) |
-| A-11 | Estrategia de **tipos compartidos** back↔front (OpenAPI / paquete común) | [[14 - Arquitectura de Software (Frontend)]] |
-| A-12 | **Fijar versiones** del stack al iniciar el repo (las del doc 02 son indicativas) | [[02 - Arquitectura]] |
+| A-11 | ~~Tipos compartidos back↔front~~ → **resuelto (D-33): OpenAPI vía `@nestjs/swagger`** | — |
+| A-12 | ~~Fijar versiones del stack~~ → **resuelto (D-31/D-32/D-34/D-36)**; versiones en [[02 - Arquitectura]] | — |
 | A-13 | Documentos y **contenido inicial** de la base de conocimientos (identidad, políticas, FAQs) — *se definirá más adelante* | [[15 - Base de Conocimientos (RAG)]] |
 
 ## Notas

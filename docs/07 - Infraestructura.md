@@ -49,10 +49,16 @@ ECS/Fargate obligaría a usar **RDS + ElastiCache** (Postgres y Redis no corren 
 2. Redis → **ElastiCache**.
 3. Backend → **ECS Fargate** con autoescalado.
 
-## Entornos (propuesta)
+## Entornos y Docker
 
-- **dev** local (Docker Compose en la máquina del desarrollador).
-- **prod** en EC2. (Un **staging** opcional se evalúa según necesidad.)
+| Entorno | Qué corre en Docker | API |
+|---|---|---|
+| **dev** (local) | `docker-compose.dev.yml`: **Postgres + Redis** | Fuera del contenedor, hot-reload (`pnpm start:dev`) |
+| **prod** (EC2, MVP) | `docker-compose`: **API (imagen de ECR) + Postgres + Redis** | En contenedor; persistencia con volúmenes + backups |
+
+- **`Dockerfile` multi-stage** para la imagen de la API (build → runtime liviano) → se publica en **ECR**.
+- Un **staging** opcional se evalúa según necesidad.
+- A escala, Postgres y Redis salen de Docker a **RDS / ElastiCache** (ver ruta de evolución arriba).
 
 ## Pendientes de infraestructura
 

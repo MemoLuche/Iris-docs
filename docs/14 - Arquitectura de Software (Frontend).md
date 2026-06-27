@@ -120,7 +120,7 @@ flowchart LR
 
 ## Tipos compartidos back ↔ front
 
-Para evitar divergencias, **generar tipos** desde el back (p. ej. DTOs/OpenAPI o un paquete compartido) en lugar de redefinirlos a mano. *(Decisión a fijar al iniciar el repo.)*
+Para evitar divergencias, **se generan los tipos/cliente del front desde el spec OpenAPI** que expone el back con `@nestjs/swagger` (D-33), p. ej. con `openapi-typescript` / un cliente generado. Nada de redefinir tipos a mano.
 
 ## Build y despliegue
 
@@ -136,8 +136,13 @@ flowchart LR
 - Variables de entorno de build (`VITE_API_URL`, `VITE_WS_URL`) por entorno.
 - SPA con *fallback* a `index.html` (rutas del lado cliente) configurado en CloudFront.
 
+## Decisiones (resueltas)
+
+- **Estado global: Zustand** (D-23). **Estado servidor: TanStack Query.**
+- **Tipos compartidos: OpenAPI** vía `@nestjs/swagger` (D-33) → generar cliente/tipos del front desde el spec del back (p. ej. `openapi-typescript`).
+- **Testing: Vitest** (alineado con Vite); el backend usa Jest.
+- **Gestor de paquetes: pnpm** (D-31).
+
 ## Pendientes
 
-- Confirmar **Zustand vs. Context** para estado global (recomendado Zustand por simplicidad).
-- Estrategia de **generación de tipos** compartidos.
 - Diseño visual / wireframes (Figma) — ver [[10 - Registro de Decisiones]].

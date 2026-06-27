@@ -18,6 +18,7 @@ Herramienta propia para **CrossHome** (inmobiliaria) que **NO es un CRM**. Se in
 Se busca una solución **propia** (no SaaS de pago) y, a futuro, **comercializarla** a otras empresas.
 
 - **Nombre clave:** Iris (nombre comercial por definir; candidatos: Atendia, Replai, Leadia, Domia).
+- **Origen del nombre:** **Iris**, la **mensajera de los dioses** en la mitología griega — la que lleva los mensajes entre mundos. Encaja con un sistema de atención y mensajería por WhatsApp.
 - **Repo backend:** https://github.com/MemoLuche/Iris-backend
 
 ## El problema (situación actual)
