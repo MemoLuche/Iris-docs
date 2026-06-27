@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Iris · Panel (prototipo)</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand"><span class="dot"></span><b>Iris</b></div>
+    <nav class="nav">
+      <a data-route="inbox" href="#/inbox"><span class="ic">📥</span> Inbox</a>
+      <a data-route="asignacion" href="#/asignacion"><span class="ic">➕</span> Asignación manual</a>
+      <div class="sep">Gestión</div>
+      <a data-route="asesores" href="#/asesores"><span class="ic">👥</span> Asesores</a>
+      <a data-route="horarios" href="#/horarios"><span class="ic">🕐</span> Horarios</a>
+      <a data-route="reglas" href="#/reglas"><span class="ic">🔀</span> Reglas</a>
+      <a data-route="conocimiento" href="#/conocimiento"><span class="ic">📚</span> Conocimiento</a>
+      <div class="sep">Owner</div>
+      <a data-route="metricas" href="#/metricas"><span class="ic">📊</span> Métricas</a>
+      <a data-route="auditoria" href="#/auditoria"><span class="ic">🧾</span> Auditoría</a>
+      <a data-route="config" href="#/config"><span class="ic">⚙️</span> Configuración</a>
+    </nav>
+    <div class="side-foot">Prototipo · datos de ejemplo</div>
+  </aside>
+  <div class="main">
+    <header class="topbar">
+      <div class="crumb" id="crumb">Inbox</div>
+      <div class="spacer"></div>
+      <div class="ia-toggle">IA global <div class="switch" onclick="toggleIA(this)"><i></i></div></div>
+      <a href="#/perfil" class="avatar" title="Mi cuenta">GO</a>
+    </header>
+    <main class="content" id="content"></main>
+  </div>
+</div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
